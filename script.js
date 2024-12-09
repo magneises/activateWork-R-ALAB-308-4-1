@@ -56,18 +56,58 @@ for (let i = 1; i < data.length; i++) {
     const obj = {};
 
     headers.forEach((header, index) => {
-        obj[header.toLowerCase] = row[index];
+        obj[header.toLowerCase()] = row[index]; 
     });
     transformedData.push(obj);
 }
 
 console.log(transformedData);
 
-console.log('End of Part 3')
-console.log('---')
+console.log('End of Part 3');
+console.log('---');
 
 
 // Part 4: Sorting and Manipulating Data
 console.log("Part 4: Sorting and Manipulating Data");
 console.log('---');
+
+const sortedData = [...transformedData];
+
+sortedData.pop();
+
+sortedData.splice(1, 0, { id: "48", name: "Barry", occupation: "Runner", age: "25" });
+
+sortedData.push({ id: "7", name: "Bilbo", occupation: "None", age: "111" });
+
+let totalAge = 0;
+let count = 0;
+sortedData.forEach(person => {
+    totalAge += +person.age; 
+    count++;
+});
+
+const averageAge = totalAge / count;
+
+console.log("Sorted and Manipulated Data:", sortedData);
+console.log("Average Age:", averageAge);
+
+console.log('End of Part 4');
+console.log('---');
+
+// Part 5: Full Circle
+console.log("Part 5: Full Circle");
+console.log('---');
+
+const csvHeader = 'ID,Name,Occupation,Age';
+const csvRows = sortedData.map(row => 
+    row.id + ',' + row.name + ',' + row.occupation + ',' + row.age
+);
+
+const finalCsv = csvHeader + '\n' + csvRows.join("\n");
+
+console.log(finalCsv);
+
+console.log('End of Part 5');
+console.log('---');
+
 
